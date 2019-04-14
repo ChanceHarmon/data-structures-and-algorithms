@@ -24,11 +24,10 @@ For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 ------------------------------------------------------------------------------------------------ */
 
 const alphabetize = (arr) => {
-  arr.sort((a, b) => {
-    return a-b
-  });
-  return arr
-};
+  arr.sort();
+   return arr;
+  }
+ 
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
