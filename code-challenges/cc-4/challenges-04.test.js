@@ -13,8 +13,7 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const isNum = (input) => {
-  const regex = /[0-9]/g;
-  regex.test(input);
+  return input.toString().match(/\d/) ? 1 : 0;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,10 +36,14 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 
 const citiesAtoJ = (arr) => {
-   let regex = arr.match(/[A-J]*/g);
-   regex.test(arr);
+   let AtoJ = [];
+   arr.forEach(city => {(city.match(/\b^[A-J]\w\[\w]*)/g))
+      AtoJ.push(city)
+   })
+  };
+   
   
-};
+
 
 
 
