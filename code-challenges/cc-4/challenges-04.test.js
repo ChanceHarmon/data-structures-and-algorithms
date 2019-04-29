@@ -35,12 +35,17 @@ CHALLENGE 3
 Write a function named citiesAtoJ that takes in an array of city names and uses a regular expression pattern to return a new array containing any cities that begin with the letters A through J, inclusive.
 ------------------------------------------------------------------------------------------------ */
 
-// const citiesAtoJ = (arr) => {
-//    cities = [];
-//    arr.forEach(cities => {(cities.match(/\"[A-J]*/g))
-//     arr.push(cities);})
+ const citiesAtoJ = (arr) => {
+    let newArr = [];
+  arr.forEach( (cities) => {
+    let regex = /^[A-J]/g;
+    if(regex.test(cities) === true) {
+      newArr.push(cities);
+    }
+  });
+  return newArr;
   
-//   };
+   };
    
   
 
@@ -62,13 +67,16 @@ Do not use the vertical bar (pipe) in your pattern.
 
 const matchMonth = (input) => {
    
-  const arr = input.match(/([Oct][October][october][oct])*/g) ? 1 : false;
-          
-
-  return arr;
   
-  
+  if (input.toString().match(/^[oO]ct(ober)?$/g)) {
+    return true;
+  } else {
+    return false;
+  }
 };
+  
+  
+
   
 
 
@@ -82,9 +90,8 @@ For example, if given the string "Hello, and have a wonderful day!", the word "H
 The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "a ", "wonderful "].
 ------------------------------------------------------------------------------------------------ */
 
-const noPunctuation = str => {
-  // Solution code here...
-};
+const noPunctuation = str => str.match(/[\w]*[\w][$ ]/g);
+  
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -98,9 +105,9 @@ The function should return a string containing the consonants in their original 
 For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 ------------------------------------------------------------------------------------------------ */
 
-let hangman = (str) => {
-  // Solution code here...
-};
+let hangman = (str) => str.replace(/[aeiouAEIOU]/g, '_');
+  
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
