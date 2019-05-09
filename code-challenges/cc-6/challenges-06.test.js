@@ -70,8 +70,11 @@ let characters = [
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
-  return houses;
+
+  Object.values(arr).forEach( (person) => {
+  houses.push(person.house)
+})
+return houses;
 };
 
 /*------------------------------------------------------------------------------------------------
@@ -87,7 +90,15 @@ hasChildrenValues(characters, 'Eddard') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+    let kids = 0;
+    arr.forEach(obj => {
+      if (Object.values(obj)[0]===character&&Object.values(obj)[2].length!==0){
+        kids = true;
+      }else if(Object.values(obj)[0]===character&&Object.values(obj)[2].length===0){
+        kids=false;}
+    })
+    return (kids);
+  
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -99,8 +110,17 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  
+  let kids = 0;
+  arr.forEach(obj => {
+    if (Object.entries(obj)[0][1]===character&&Object.entries(obj)[2][1].length!==0){
+      kids = true;
+    }else if(Object.entries(obj)[0][1]===character&&Object.entries(obj)[2][1].length===0){
+      kids=false;}
+  })
+  return (kids);
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -109,8 +129,19 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  let characterCount = 0;
+  Object.values(arr).map((element)=> {
+    if (element.name){
+      characterCount++;
+    } if (element.spouse){
+      characterCount++;
+    } if(element.children.length > 0){
+      characterCount+= element.children.length;
+    }
+  })
+  return characterCount;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6 - Stretch Goal
