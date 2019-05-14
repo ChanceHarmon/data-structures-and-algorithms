@@ -9,10 +9,8 @@ For example, oddValues([1,2,3]) returns [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const oddValues = (arr) => {
-  let odds = arr.filter( function(val){
-    return ( val % 2)
-  })
-  return odds;
+  
+  return arr.filter( num => (num % 2) );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -27,7 +25,7 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 
 
 const filterStringsWithVowels = (arr) => {
-  // Solution code here...
+  return arr.filter(vowel => vowel.match(/[aeiou]/gi));
 };
 
 
@@ -40,7 +38,7 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
 const notInFirstArray = (forbiddenValues, arr) => {
-  // Solution code here...
+  return arr.filter(v=>!forbiddenValues.includes(v));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -83,7 +81,7 @@ const snorlaxData = {
 };
 
 const getBaseStatGreaterThan = (arr, minBaseStat) => {
-  // Solution code here...
+  return arr.filter(v=> v.baseStat>minBaseStat);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -95,7 +93,10 @@ For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 
 ------------------------------------------------------------------------------------------------ */
 
 const getStatName = (arr, minBaseStat) => {
-  // Solution code here...
+  let name = arr.filter(function (n, i) {
+    return n.baseStat > minBaseStat;
+  });
+  return name.map(n=>n.stat.name);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -147,9 +148,7 @@ const characters = [
   },
 ];
 
-const getCharactersWithoutChildren = (arr) => {
-  // Solution code here...
-};
+const getCharactersWithoutChildren = (arr) => arr.filter(arr => !arr.children)
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
