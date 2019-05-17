@@ -25,23 +25,17 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 const grandTotal = (stores) => {
   let hourlytotals = [];
   for (let j = 0; j< hoursOpen.length; j++) {
-    // console.log(hoursOpen[k]);
     let hour = [];
     stores.forEach(function (element, i) {
-      //  console.log(element[k]);
-      hour.push(element[j]);
-
-    });
-    // console.log(hour)
+       hour.push(element[j]);
+       });
+    
     let sum = hour.reduce(function (a, b) {
       return a + b;
     });
-    // console.log(sum);
     hourlytotals.push(sum);
   }
-  // console.log(hourlytotals);
   return (hourlytotals);
-
 };
 
 
@@ -57,7 +51,14 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  // Solution code here...
+  const output = [];
+  hours.forEach( (hour, idx) => {
+    output.push({
+      sales:`${data[idx]} cookies`,
+      time: hour
+    })
+  })
+  return output;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -78,9 +79,7 @@ const errands = [
   }
 ];
 
-const howManyTreats = (arr) => {
-  // Solution code here...
-};
+const howManyTreats = arr => arr[2].items[1].quantity
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -101,7 +100,12 @@ The top row of the board is considered row zero and row numbers increase as they
 ------------------------------------------------------------------------------------------------ */
 
 const battleship = (board, row, col) => {
-  //  Solution code here...
+  if(board[row][col]===' '){
+    return('miss');
+  };
+  if(board[row][col]==='#'){
+    return('hit');
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,7 +117,17 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
-  // Solution code here...
+  let sum = [];
+
+  numbers.forEach(function (element) {
+    if (element.length > 0)
+      sum.push(element.reduce(function (a, b) {
+        return a * b;
+      }));
+  });
+  return sum.reduce(function (a, b) {
+    return a * b;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -132,9 +146,7 @@ const weeklyTemperatures = [
   [65, 56, 55, 52, 55, 62, 57],
 ];
 
-const averageDailyTemperature = (weather) => {
-  // Solution code here...
-};
+const averageDailyTemperature = (weather) => weather.flat().reduce((agg,val) => agg + val)/weather.flat().length;
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -154,7 +166,17 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+  let temp = [];
+  weather.forEach(function (element) {
+    if (element.length > 0)
+      temp.push(element.reduce(function (a, b) {
+        return a + b;
+      }) / element.length);
+  });
+  let low = temp.sort((a, b) => {
+    return a - b;
+  })
+  return low[0];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -169,9 +191,9 @@ The function should parse the string as rows and columns and compute the sum of 
 For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
-const excel = (str) => {
-  // Solution code here...
-};
+const excel = (str) => str.split('\n').map(item =>item.split(',')
+.map(entry => Number.parseInt(entry))
+.reduce((acc,value) => acc+value))
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
