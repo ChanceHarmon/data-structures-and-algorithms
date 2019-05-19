@@ -21,7 +21,10 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 ------------------------------------------------------------------------------------------------ */
 
 const findHappiness = (arr) => {
-  // Solution code here...
+  return arr.filter(function(v){
+    if (v.includes(':)')===true)
+    return v;
+    })
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -32,10 +35,7 @@ Write a function named standardizePhoneNumbers that takes in an array of phone n
 For example, (123) 456-7890 returns 1234567890
 ------------------------------------------------------------------------------------------------ */
 
-const standardizePhoneNumbers = (arr) => {
-  // Solution code here...
-};
-
+const standardizePhoneNumbers = (arr) => arr.map(num => num.replace(/[\(\)\- ]/g, ''));
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
@@ -45,8 +45,12 @@ For example, 'abcdefg' returns 'bdf'
 ------------------------------------------------------------------------------------------------ */
 
 const onlyOddChars = (str) => {
-  // Solution code here...
-};
+  let output = '';
+  for(let i= 1; i< str.length; i  +=2){
+  output += str.charAt(i);
+}
+  return output;
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -54,9 +58,7 @@ CHALLENGE 5
 Write a function named allHappy that takes in an array of strings and returns a Boolean indicating whether all those strings contain ":)".
 ------------------------------------------------------------------------------------------------ */
 
-const allHappy = (arr) => {
-  // Solution code here...
-};
+const allHappy = (arr) => arr.every((val) => val.includes(':)'));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -65,7 +67,11 @@ Write a function named findAnything that takes in an array of strings, along wit
 ------------------------------------------------------------------------------------------------ */
 
 const findAnything = (arr, target) => {
-  // Solution code here...
+  let banana = [];
+  for (let i = 0; i<arr.length; i++){
+    if(arr[i].includes(target))banana.push(arr[i]);
+  }
+  return banana;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -74,9 +80,13 @@ CHALLENGE 7
 Write a function named findEvery that takes in an array of strings, along with a target string. Return a Boolean based on whether or not every string in the array contains the target string.
 ------------------------------------------------------------------------------------------------ */
 
-const findEvery = (arr, target) => {
-  // Solution code here...
-};
+const findEvery = (arr, target) => arr.reduce((acc, value) => {
+  if ((acc === true) && (value.includes(target))) {
+    return true;
+  } else {
+    return false;
+  }
+}, true);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8
@@ -90,9 +100,7 @@ Return a two-dimensional array with the same roster, but where anyone whose name
 For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again', 'still Brook']] returns [['Actual Person'], ['Human Person']]
 ------------------------------------------------------------------------------------------------ */
 
-const unenrollBrook = (arr) => {
-  // Solution code here...
-};
+const unenrollBrook = (arr) => arr.map(array => array.filter(str => !str.includes('Brook')));
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
